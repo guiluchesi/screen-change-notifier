@@ -23,7 +23,7 @@ describe('Email notificator', () => {
     jest.clearAllMocks()
   })
 
-  it('should user\'s env variables to authenticate', () => {
+  it('should use user\'s env variables to authenticate', () => {
     emailNotificator(params)
 
     const expectedAuth = {
