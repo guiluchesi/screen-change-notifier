@@ -30,8 +30,10 @@ describe('Email notificator', () => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD
     }
-    const mailTransporter = nodemailer.createTransport.mock.calls[0][0]
-    expect(mailTransporter.auth).toEqual(expectedAuth)
+
+    const authExpectation = expect.objectContaining({ auth: expectedAuth })
+    expect(nodemailer.createTransport).toBeCalledWith(authExpectation)
+    expect(nodemailer.createTransport).toBeCalledTimes(1)
   })
 
   it('should send an email using the subject and message passed by params', () => {
