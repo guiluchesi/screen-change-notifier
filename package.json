@@ -35,5 +35,8 @@
       "node": true,
       "jest": true
     }
+  },
+  "engines": {
+    "node": ">=12"
   }
 }
