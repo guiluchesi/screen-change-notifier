@@ -1,5 +1,5 @@
 {
-  "name": "screen-warning",
+  "name": "screen-change-notifier",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
@@ -29,6 +29,10 @@
     "ignore": [
       "node_modules",
       "package.json"
-    ]
+    ],
+    "env": {
+      "node": true,
+      "jest": true
+    }
   }
 }

@@ -1,51 +1,41 @@
-const pixelmatch = require('pixelmatch')
-
-const getNotificator = require('./notification')
+const { getNotificator } = require('./notification')
 const screenshot = require('./screenshot')
+const screenChangeExceedsThreshold = require('./comparator')
 
-const startApp = async () => {
-  const pixelsChangedThreshold = 75000
-  const msToNextPrint = 3000
-  const timeoutInMinutes = 10
-  const timeoutInSeconds = timeoutInMinutes * 60
-  const notificationType = 'email'
+const app = async (appConfiguration) => {
+  const {
+    notificationType,
+    msDelayToScreenshot,
+    pixelsChangedThreshold,
+    timeoutInMinutes
+  } = appConfiguration
+
   const notificator = getNotificator(notificationType)
   const timerStart = process.hrtime()
+  const timeoutInSeconds = timeoutInMinutes * 60
 
   console.log('Tirando print de base')
-  const baseScreenshot = await screenshot(msToNextPrint)
+  const baseScreenshot = await screenshot(msDelayToScreenshot)
 
-  let lastPixelChanged = 0
   let screenChanged = false
-
   while (!screenChanged) {
     console.log('Tirando print de comparação')
-    const currentScreen = await screenshot(msToNextPrint)
+    const currentScreen = await screenshot(msDelayToScreenshot)
 
     console.log('Comparando telas')
-    const pixelsChanged = pixelmatch(
-      currentScreen.data,
-      baseScreenshot.data,
-      null,
-      currentScreen.width,
-      currentScreen.height
-    )
+    screenChanged = screenChangeExceedsThreshold(currentScreen, baseScreenshot, pixelsChangedThreshold)
 
-    if (pixelsChanged !== lastPixelChanged) {
-      console.log('Quantidade de pixels mudados', pixelsChanged)
-      lastPixelChanged = pixelsChanged
-    }
-
-    if (pixelsChanged > pixelsChangedThreshold) {
+    if (screenChanged) {
       console.log('Tela diferente')
       notificator({
         subject: 'Importação finalizada',
         message: 'A importação acabou'
       })
-      screenChanged = true
+      return
     }
 
     const [secondsPassed] = process.hrtime(timerStart)
+    console.log(secondsPassed)
     if (secondsPassed > timeoutInSeconds) {
       console.log('Timeout')
       notificator({
@@ -57,4 +47,4 @@ const startApp = async () => {
   }
 }
 
-startApp()
+module.exports = app

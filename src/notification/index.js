@@ -1,11 +1,11 @@
 const email = require('./email')
 
-const notiationMethods = {
+const notificationMethods = {
   email
 }
 
-const getNotificator = (notificationType) => {
-  const notificator = notiationMethods[notificationType]
+const getNotificator = (notificationType, notificationOptions = notificationMethods) => {
+  const notificator = notificationOptions[notificationType]
   if (notificator) {
     return notificator
   } else {
@@ -15,4 +15,7 @@ const getNotificator = (notificationType) => {
   }
 }
 
-module.exports = getNotificator
+module.exports = {
+  notificationMethods,
+  getNotificator
+}
