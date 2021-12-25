@@ -10,7 +10,7 @@
     "prepare": "husky install"
   },
   "keywords": [],
-  "author": "",
+  "author": "Guilherme Luchesi",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^10.0.0",
