@@ -2,7 +2,7 @@ require("dotenv").config()
 
 const nodemailer = require("nodemailer")
 
-const notifyByEmail = () => {
+const notifyByEmail = ({ subject, message }) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -14,8 +14,8 @@ const notifyByEmail = () => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_TO,
-    subject: 'Importação finalizada',
-    html: '<h1>A importação acabou</h1>'
+    subject,
+    html: `<h1>${message}</h1>`
   }
 
   transporter.sendMail(mailOptions, function (err) {
