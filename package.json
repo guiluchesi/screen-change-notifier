@@ -29,7 +29,8 @@
   "standard": {
     "ignore": [
       "node_modules",
-      "package.json"
+      "package.json",
+      "README.md"
     ],
     "env": {
       "node": true,
