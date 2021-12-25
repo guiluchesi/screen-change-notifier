@@ -11,6 +11,6 @@ const pixelChanged = pixelmatch(
   null,
   screen1.width,
   screen1.height
-);
+)
 
 console.log('Amount of pixels changed:', pixelChanged)

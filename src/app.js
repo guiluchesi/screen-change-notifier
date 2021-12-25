@@ -29,7 +29,7 @@ const startApp = async () => {
       null,
       currentScreen.width,
       currentScreen.height
-    );
+    )
 
     if (pixelsChanged !== lastPixelChanged) {
       console.log('Quantidade de pixels mudados', pixelsChanged)

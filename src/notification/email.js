@@ -1,6 +1,6 @@
-require("dotenv").config()
+require('dotenv').config()
 
-const nodemailer = require("nodemailer")
+const nodemailer = require('nodemailer')
 
 const notifyByEmail = ({ subject, message }) => {
   const transporter = nodemailer.createTransport({
@@ -24,8 +24,8 @@ const notifyByEmail = ({ subject, message }) => {
       return
     }
 
-    console.log('Notificação enviada');
-  });
+    console.log('Notificação enviada')
+  })
 }
 
 module.exports = notifyByEmail

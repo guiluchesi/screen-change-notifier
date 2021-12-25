@@ -5,6 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard",
     "start": "node src/app.js"
   },
   "keywords": [],
@@ -16,5 +17,13 @@
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
     "screenshot-desktop": "^1.12.7"
+  },
+  "devDependencies": {
+    "standard": "^16.0.4"
+  },
+  "standard": {
+    "ignore": [
+      "node_modules"
+    ]
   }
 }
