@@ -2,11 +2,11 @@
   "name": "screen-change-notifier",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
     "lint": "standard",
-    "start": "node src/app.js",
+    "start": "node src/index.js",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -17,7 +17,8 @@
     "nodemailer": "^6.7.2",
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
-    "screenshot-desktop": "^1.12.7"
+    "screenshot-desktop": "^1.12.7",
+    "yargs": "^17.3.1"
   },
   "devDependencies": {
     "husky": "^7.0.0",
