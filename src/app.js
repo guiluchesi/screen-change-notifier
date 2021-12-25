@@ -35,7 +35,6 @@ const app = async (appConfiguration) => {
     }
 
     const [secondsPassed] = process.hrtime(timerStart)
-    console.log(secondsPassed)
     if (secondsPassed > timeoutInSeconds) {
       console.log('Timeout')
       notificator({
