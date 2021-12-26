@@ -1,12 +1,12 @@
 const desktopScreenshot = require('screenshot-desktop')
+const { setTimeout } = require('timers/promises')
 const png = require('pngjs')
 
-const { timeout } = require('./helpers')
 const getScreenshotDetails = require('./screenshot')
 
 jest.mock('screenshot-desktop')
 jest.mock('pngjs')
-jest.mock('./helpers')
+jest.mock('timers/promises')
 
 describe('Desktop screenshot', () => {
   const mockScreenshotBuffer = Buffer.from('screenshot')
@@ -16,7 +16,6 @@ describe('Desktop screenshot', () => {
   }))
 
   beforeAll(() => {
-    timeout.mockImplementation(() => Promise.resolve())
     desktopScreenshot.mockResolvedValue(mockScreenshotBuffer)
   })
 
@@ -27,7 +26,7 @@ describe('Desktop screenshot', () => {
   it('should call the timeout with the msToNextPrint', async () => {
     await getScreenshotDetails(1000)
 
-    expect(timeout).toBeCalledWith(1000)
+    expect(setTimeout).toBeCalledWith(1000)
   })
 
   it('should take the screenshot as png', async () => {

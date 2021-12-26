@@ -1,7 +1,6 @@
 const desktopScreenshot = require('screenshot-desktop')
+const { setTimeout } = require('timers/promises')
 const PNG = require('pngjs').PNG
-
-const { timeout } = require('./helpers')
 
 /**
  * Take a sreenshot and process it returning its data
@@ -9,7 +8,7 @@ const { timeout } = require('./helpers')
  * @returns {Promise<object>} The screenshot data with sizes and buffer
  */
 const getScreenshotDetails = async (msToNextPrint = 3000) => {
-  await timeout(msToNextPrint)
+  await setTimeout(msToNextPrint)
   const screenshotBuffer = await desktopScreenshot({ format: 'png' })
   const screenshot = PNG.sync.read(screenshotBuffer)
   return screenshot
