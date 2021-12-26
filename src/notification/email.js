@@ -2,6 +2,10 @@ require('dotenv').config()
 
 const nodemailer = require('nodemailer')
 
+/**
+ * Send and email notifying with the subject and messaged informed
+ * @param {object} emailPayload - The subject and message to send
+ */
 const notifyByEmail = ({ subject, message }) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
