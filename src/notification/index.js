@@ -1,8 +1,8 @@
 const email = require('./email')
 
-const notificationMethods = {
-  email
-}
+const notificationMethods = new Map([
+  ['email', email]
+])
 
 /**
  * Get the notificator method based on the name informed
@@ -11,7 +11,7 @@ const notificationMethods = {
  * @returns {function} The notificator method
  */
 const getNotificator = (notificationType, notificationOptions = notificationMethods) => {
-  const notificator = notificationOptions[notificationType]
+  const notificator = notificationOptions.get(notificationType)
   if (notificator) {
     return notificator
   } else {

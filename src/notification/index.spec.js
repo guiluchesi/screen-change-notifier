@@ -4,7 +4,7 @@ describe('Get notificator', () => {
   it('should return the notificator required', () => {
     const notificator = getNotificator('email')
 
-    expect(notificator).toBe(notificationMethods.email)
+    expect(notificator).toBe(notificationMethods.get('email'))
   })
 
   it('should return a function that log that the method is not implemented', () => {
